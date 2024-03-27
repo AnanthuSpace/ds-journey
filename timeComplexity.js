@@ -92,4 +92,33 @@ function primeNumber(n) {
     return true
  }
  
- console.log(primeNumber(7));
+//  console.log(primeNumber(7));
+
+
+function powerOfTwo(n){
+    if(n<1) return false
+    while(n>1){
+        if(n%2!==0) return false
+        n = n/2                // O(logn)
+    }
+    return true
+}
+
+// console.log(powerOfTwo(1));
+// console.log(powerOfTwo(2));
+// console.log(powerOfTwo(5));
+
+
+function fib(n){
+    return (n<=1) ? n : (fib(n-1)+fib(n-2))
+}
+
+// console.log(fib(4));
+
+function fact(n){
+    if(n<=1) {
+        return 1
+    }
+    return n*fact(n-1)
+}
+console.log(fact(5));
