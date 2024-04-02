@@ -57,6 +57,22 @@ class linkedList{
             this.size++
         }
     }
+
+    search(value){
+        if(this.empty()){
+            return -1
+        }
+        let i =0
+        let curr = this.head
+        while(curr){
+            if(curr.value === value){
+                return i
+            }
+            curr = curr.next
+            i++
+        }
+        return -1
+    }
 }
 
 
@@ -71,3 +87,4 @@ list.insert(60,1)
 list.insert(30,1)
 list.insert(5,1)
 list.print()
+console.log(list.search(80));
