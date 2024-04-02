@@ -58,26 +58,6 @@ class linkedList {
             console.log(data);
         }
     }
-    
-    remove(index){
-        if(index<0 || index>=this.size){
-            return null
-        }
-        let removed
-        if(index == 0){
-            removed = this.head
-            this.head = this.head.next
-        }else{
-            let prev = this.head
-            for(let i=0; i<index-1;i++){
-                prev = prev.next
-            }
-            removed = prev.next
-            prev.next = removed.next
-        }
-        this.size--
-        console.log("Removed item ",removed.value);
-    }
 
     removeValue(value){
         if(this.isEmpty()){
@@ -107,6 +87,5 @@ console.log(list.isEmpty());
 list.insert(10, 0)
 list.prepend(20)
 list.prepend(30)
-// list.remove(1)
 list.removeValue(20)
 list.print()
