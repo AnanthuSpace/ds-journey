@@ -58,21 +58,18 @@ class linkedList{
         }
     }
 
-    search(value){
-        if(this.empty()){
-            return -1
-        }
-        let i =0
+    reverse(){
+        let prev = null
         let curr = this.head
         while(curr){
-            if(curr.value === value){
-                return i
-            }
-            curr = curr.next
-            i++
+            let next = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next
         }
-        return -1
+        this.head = prev
     }
+
 }
 
 
@@ -87,4 +84,5 @@ list.insert(60,1)
 list.insert(30,1)
 list.insert(5,1)
 list.print()
-console.log(list.search(50));
+list.reverse()
+list.print()
