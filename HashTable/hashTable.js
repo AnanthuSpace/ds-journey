@@ -42,4 +42,4 @@ table.set("age",22)
 table.set("address","Vadakkumkara")
 // table.remove("age")
 console.log(table.get("age"));
-// table.display()
+table.display()

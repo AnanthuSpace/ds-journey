@@ -1,16 +1,24 @@
 class queue{
     constructor(){
-        this.items = {}
+        this.items = []
         this.head = 0
         this.tail = 0
     }
 
     enqueue(value){
-        this.items[this.head]
+        if(this.isEmpty()){
+            this.items[this.head] = value
+        }else{
+            this.items[this.tail] = value
+            this.tail++
+        }
     }
 
     dequeue(){
-        this.items.shift()
+        const item = this.items[this.head]
+        delete this.items[this.head]
+        this.head
+        console.log(item);
     }
 
     isEmpty(){
@@ -21,7 +29,7 @@ class queue{
         if(this.isEmpty()){
             return null
         }
-        return this.items[0]
+        return this.items[this.head]
     }
 
     size(){
@@ -40,6 +48,7 @@ res.enqueue(20)
 res.enqueue(30)
 console.log(res.print());
 console.log(res.size());
+res.dequeue()
 res.dequeue()
 console.log(res.print());
 console.log(res.size());
