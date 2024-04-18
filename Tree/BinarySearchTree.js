@@ -42,78 +42,93 @@ class Bst {
 
 
     search(root, value) {
-        if(!root){
+        if (!root) {
             return false
-        }else{
-            if(root.value === value){
+        } else {
+            if (root.value === value) {
                 return `value ${value} is existed`
-            }else if(value < root.value){
+            } else if (value < root.value) {
                 return this.search(root.left, value)
-            }else{
+            } else {
                 return this.search(root.right, value)
             }
         }
     }
 
-    preOrder(root){
-        if(root){
+    preOrder(root) {
+        if (root) {
             console.log(root.value);
             this.preOrder(root.left)
             this.preOrder(root.right)
         }
     }
 
-    inOrder(root){
-        if(root){
+    inOrder(root) {
+        if (root) {
             this.inOrder(root.left)
             console.log(root.value);
             this.inOrder(root.right)
         }
     }
 
-    postOrder(root){
-        if(root){
+    postOrder(root) {
+        if (root) {
             this.postOrder(root.left)
             this.postOrder(root.right)
             console.log(root.value);
         }
     }
 
-    min(root){
-        if(!root.left){
+    levelOrder() {
+        const queue = []
+        queue.push(this.root)
+        while(queue.length){
+            let curr = queue.shift()
+            console.log(curr.value);
+            if(curr.left){
+                queue.push(curr.left)
+            }
+            if(curr.right){
+                queue.push(curr.right)
+            }
+        }
+    }
+
+    min(root) {
+        if (!root.left) {
             return root.value
-        }else{
+        } else {
             return this.min(root.left)
         }
     }
 
-    max(root){
-        if(!root.right){
+    max(root) {
+        if (!root.right) {
             return root.value
-        }else{
+        } else {
             return this.max(root.right)
         }
     }
 
-    delete(value){
+    delete(value) {
         this.root = this.deleteNode(this.root, value)
     }
 
-    deleteNode(root, value){
-        if(root === null){
+    deleteNode(root, value) {
+        if (root === null) {
             return root
         }
-        if(value < root.value){
+        if (value < root.value) {
             root.left = this.deleteNode(root.left, value)
-        }else if(value > root.value){
+        } else if (value > root.value) {
             root.right = this.deleteNode(root.right, value)
         } else {
-            if( !root.left && !root.right){
+            if (!root.left && !root.right) {
                 return null
             }
-            if(!root.left){
+            if (!root.left) {
                 return root.right
-            } else if(!root.right){
+            } else if (!root.right) {
                 return root.left
             }
             root.value = this.min(root.right)
@@ -136,6 +151,6 @@ bst.insertion(15)
 // bst.inOrder(bst.root)
 // bst.postOrder(bst.root)
 bst.delete(3)
+bst.levelOrder()
 console.log(bst.min(bst.root));
 console.log(bst.max(bst.root));
-
