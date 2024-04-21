@@ -4,28 +4,28 @@ class MinHeap{
         this.size = 0
     }
 
-    getParentIndex(index){
+    perent(index){
         return Math.floor((index-1)/2)
     }
 
-    getLeftChildIndex(index){
+    left(index){
         return 2*index+1
     }
 
-    getRightChildIndex(index){
+    right(index){
         return 2*index+2
     }
 
     hasParent(index){
-        return this.getParentIndex(index) >= 0
+        return this.perent(index) >= 0
     }
 
-    hasLeftChild(index){
-        return this.getLeftChildIndex(index)<this.size
+    hasLeft(index){
+        return this.left(index)<this.size
     }
 
-    hasRightChild(index){
-        return this.getRightChildIndex(index)<this.size
+    hasRight(index){
+        return this.right(index)<this.size
     }
 
     swap(index1, index2){
@@ -44,17 +44,17 @@ class MinHeap{
 
     heapifyUp(){
         let index = this.size
-        while(this.hasParent(index) && this.heap[this.getParentIndex(index)]>this.heap[index]){
-            this.swap(this.getParentIndex(index), index)
-            index = this.getParentIndex(index)
+        while(this.hasParent(index) && this.heap[this.perent(index)]>this.heap[index]){
+            this.swap(this.perent(index), index)
+            index = this.perent(index)
         }
     }
 
     // Recursive heapifyUp
     heapifyUpRecursive(index){
-        if(this.hasParent(index) && this.heap[this.getParentIndex(index)] > this.heap[index]){
-            this.swap(this.getParentIndex(index), index)
-            this.heapifyUpRecursive(this.getParentIndex(index))
+        if(this.hasParent(index) && this.heap[this.perent(index)] > this.heap[index]){
+            this.swap(this.perent(index), index)
+            this.heapifyUpRecursive(this.perent(index))
         }
     }
 
