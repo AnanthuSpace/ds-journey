@@ -40,6 +40,15 @@ class Bst {
         }
     }
 
+    height(root = this.root) {
+        if (!root) {
+            return -1; 
+        }
+        const leftHeight = this.height(root.left);
+        const rightHeight = this.height(root.right);
+        return (leftHeight > rightHeight ? leftHeight : rightHeight) + 1;
+    }
+
     search(root, value) {
         if (!root) {
             return false
@@ -153,3 +162,4 @@ bst.delete(3)
 bst.levelOrder()
 console.log(bst.min(bst.root));
 console.log(bst.max(bst.root));
+console.log("Height is ", bst.height())
