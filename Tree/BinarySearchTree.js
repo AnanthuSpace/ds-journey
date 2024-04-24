@@ -40,13 +40,30 @@ class Bst {
         }
     }
 
-    height(root = this.root) {
-        if (!root) {
-            return -1; 
+    minHight(node = this.root){
+        if(node == null){
+            return -1
         }
-        const leftHeight = this.height(root.left);
-        const rightHeight = this.height(root.right);
-        return (leftHeight > rightHeight ? leftHeight : rightHeight) + 1;
+        let left = this.minHight(node.left)
+        let right = this.minHight(node.right)
+        if(left<right){
+            return left+1
+        }else{
+            return right+1
+        }
+    }
+
+    maxHight(node = this.root){
+        if(node == null){
+            return -1
+        }
+        let left = this.maxHight(node.left)
+        let right = this.maxHight(node.right)
+        if(left>right){
+            return left+1
+        }else{
+            return right+1
+        }
     }
 
     search(root, value) {
@@ -149,17 +166,23 @@ class Bst {
 
 
 const bst = new Bst()
-bst.insertion(10)
-bst.insertion(5)
+bst.insertion(9)
+bst.insertion(4)
 bst.insertion(3)
+bst.insertion(6)
+bst.insertion(5)
 bst.insertion(7)
-bst.insertion(15)
+bst.insertion(17)
+bst.insertion(22)
+bst.insertion(20)
+bst.insertion(10)
 // console.log(bst.search(bst.root, 10));
 // bst.preOrder(bst.root)
-// bst.inOrder(bst.root)
+bst.inOrder(bst.root)
 // bst.postOrder(bst.root)
-bst.delete(3)
+// bst.delete(3)
 bst.levelOrder()
 console.log(bst.min(bst.root));
 console.log(bst.max(bst.root));
-console.log("Height is ", bst.height())
+console.log("Min Height is ", bst.minHight())
+console.log("Max Height is ", bst.maxHight())
