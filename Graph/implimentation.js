@@ -72,6 +72,15 @@ class Graph{
         }
         delete this.adjacencyList[vertex]
     }
+
+    cyclic(){
+        for(let v in this.adjacencyList){
+            if (this.adjacencyList[v].has(v)) {
+                return true
+            }
+        }
+        return false
+    }
 }
 
 const graph = new Graph()
@@ -81,6 +90,6 @@ graph.AddVertex("C")
 graph.AddEdge("A","B")
 graph.AddEdge("B","C")
 graph.removeVertex("B")
+console.log("Cyclic finding is : ",graph.cyclic());
 graph.display() 
-
-console.log(graph.hasEdge("A","C"));
+// console.log(graph.hasEdge("A","C"));

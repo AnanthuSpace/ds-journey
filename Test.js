@@ -244,3 +244,74 @@
 // heap.insert(8)
 // heap.delete(5)
 // heap.display()
+
+
+// Graph
+
+class Graph{
+    constructor(){
+        this.adjacencyList = {}
+    }
+
+    addVertex(v){
+        if(!this.adjacencyList[v]){
+            this.adjacencyList[v] = new Set()
+        }
+    }
+
+    addEdge(v1,v2){
+        if(!this.adjacencyList[v1]){
+            this.addVertex(v2)
+        }
+        if(!this.adjacencyList[v2]){
+            this.addVertex(v2)
+        }
+        this.adjacencyList[v1].add(v2)
+        this.adjacencyList[v2].add(v1)
+    }
+
+    display(){
+        for(let v in this.adjacencyList){
+            console.log(v + "->" + [...this.adjacencyList[v]]);
+        }
+    }
+
+    removeEdge(v1,v2){
+        this.adjacencyList[v1].delete(v2)
+        this.adjacencyList[v2].delete(v1)
+    }
+
+    removeV(v){
+        if(!this.adjacencyList[v]){
+            return 
+        }
+        for(let vertex of this.adjacencyList[v]){
+            this.removeEdge(vertex, v)
+        }
+        delete this.adjacencyList[v]
+    }
+
+    cyclic(){
+        for(let v in this.adjacencyList){
+            if (this.adjacencyList[v].has(v)) {
+                return true
+            }
+        }
+        return false
+    }
+}
+
+
+const graph = new Graph()
+graph.addVertex("A")
+graph.addVertex("B")
+graph.addVertex("C")
+graph.addVertex("D")
+graph.addEdge("A","B")
+graph.addEdge("A","C")
+graph.addEdge("A","D")
+graph.removeEdge("A","B")
+// graph.addEdge("A","A")
+console.log(graph.cyclic());
+graph.removeV("B")
+graph.display()
