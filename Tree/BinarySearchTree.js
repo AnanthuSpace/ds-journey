@@ -15,6 +15,10 @@ class Bst {
         return this.root === null
     }
 
+    isBalaced(){
+        return (this.maxHight() - this.minHight()) <= 0
+    }
+    
     insertion(value){
         const newNode = new Node(value)
         if(this.root == null){
@@ -88,11 +92,11 @@ class Bst {
         }
     }
 
-    inOrder(root) {
+    inOrder(root, arr) {
         if (root) {
-            this.inOrder(root.left)
+            this.inOrder(root.left, arr)
             console.log(root.value);
-            this.inOrder(root.right)
+            this.inOrder(root.right, arr)
         }
     }
 
@@ -161,6 +165,16 @@ class Bst {
         }
         return root
     }
+    isBst(){
+        let arr = []
+        this.inOrder(this.root, arr)
+        for(let i=0; i<arr.length;i++){
+            if(arr[i]<arr[i-1]){
+                return false
+            }
+        }
+        return true
+    }
 }
 
 
@@ -177,8 +191,8 @@ const bst = new Bst()
     bst.insertion(20)
     bst.insertion(10)
 // console.log(bst.search(bst.root, 10));
-// bst.preOrder(bst.root)
-bst.inOrder(bst.root)
+bst.preOrder(bst.root)
+// bst.inOrder(bst.root)
 // bst.postOrder(bst.root)
 // bst.delete(3)
 bst.levelOrder()
@@ -186,3 +200,5 @@ console.log(bst.min(bst.root));
 console.log(bst.max(bst.root));
 console.log("Min Height is ", bst.minHight())
 console.log("Max Height is ", bst.maxHight())
+console.log(bst.isBalaced());
+console.log(bst.isBst());

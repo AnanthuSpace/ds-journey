@@ -62,28 +62,27 @@ class MinHeap{
         console.log(this.heap);
     }
 
-    delete(data){
-        const index = this.heap.indexOf(data)
-        if(index!==-1){
-            const lastIndex = this.size -1
-            this.swap(index,lastIndex)
-            this.heap.pop()
-            this.size--
-            this.heapifyDown(0)
-        }
+    delete(){
+        this.heap[0] = this.heap[this.size-1]
+        this.heap.pop()
+        this.size--
+        this.heapifyDown(0)
     }
 
-    heapifyDown(index){
-        while(this.hasLeft(index)){
-            let small = this.left(index)
-            if(this.hasRight(index) && this.heap[this.right(index)]<this.heap[this.left(index)]){
-                small = this.right(index)
-            }
-            if(this.heap[index] < this.heap[small]){
-                break;
-            }
+    heapifyDown(index) {
+        let small = index
+        const left = this.left(index)
+        const right = this.right(index)
+        if(left < this.size && this.heap[this.left(index)] < this.heap[small]){
+            small = left
+        }
+        if(right < this.size && this.heap[this.right(index)] < this.heap[small]){
+            small = right
+        }
+
+        if(small !== index){
             this.swap(index, small)
-            index = small
+            this.heapifyDown(small)
         }
     }
 }
@@ -94,5 +93,6 @@ heap.insert(5)
 heap.insert(20)
 heap.insert(10)
 heap.insert(8)
+heap.insert(7)
 heap.delete(5)
 heap.display()
