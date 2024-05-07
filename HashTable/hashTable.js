@@ -40,6 +40,6 @@ const table = new HashTable(71)
 table.set("name","ananthu")
 table.set("age",22)
 table.set("address","Vadakkumkara")
-// table.remove("age")
+table.remove("age")
 console.log(table.get("age"));
 table.display()

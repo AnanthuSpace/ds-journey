@@ -1,5 +1,5 @@
 class Node {
-    constructor(value){
+    constructor(value) {
         this.value = value
         this.left = null
         this.right = null
@@ -7,66 +7,66 @@ class Node {
 }
 
 class Bst {
-    constructor(){
+    constructor() {
         this.root = null
     }
-    
-    isEmpty(){
+
+    isEmpty() {
         return this.root === null
     }
 
-    isBalaced(){
+    isBalaced() {
         return (this.maxHight() - this.minHight()) <= 0
     }
-    
-    insertion(value){
+
+    insertion(value) {
         const newNode = new Node(value)
-        if(this.root == null){
+        if (this.root == null) {
             this.root = newNode
-        }else{
+        } else {
             this.insertNode(this.root, newNode)
         }
     }
 
-    insertNode(root, newNode){
-        if(newNode.value < root.value){
-            if(root.left == null){
+    insertNode(root, newNode) {
+        if (newNode.value < root.value) {
+            if (root.left == null) {
                 root.left = newNode
-            }else{
+            } else {
                 this.insertNode(root.left, newNode)
             }
-        }else{
-            if(root.right == null){
+        } else {
+            if (root.right == null) {
                 root.right = newNode
-            }else{
+            } else {
                 this.insertNode(root.right, newNode)
             }
         }
     }
 
-    minHight(node = this.root){
-        if(node == null){
+    minHight(node = this.root) {
+        if (node == null) {
             return -1
         }
         let left = this.minHight(node.left)
         let right = this.minHight(node.right)
-        if(left<right){
-            return left+1
-        }else{
-            return right+1
+        if (left < right) {
+            return left + 1
+        } else {
+            return right + 1
         }
     }
 
-    maxHight(node = this.root){
-        if(node == null){
+    maxHight(node = this.root) {
+        if (node == null) {
             return -1
         }
         let left = this.maxHight(node.left)
         let right = this.maxHight(node.right)
-        if(left>right){
-            return left+1
-        }else{
-            return right+1
+        if (left > right) {
+            return left + 1
+        } else {
+            return right + 1
         }
     }
 
@@ -92,11 +92,11 @@ class Bst {
         }
     }
 
-    inOrder(root, arr) {
+    inOrder(root) {
         if (root) {
-            this.inOrder(root.left, arr)
+            this.inOrder(root.left)
             console.log(root.value);
-            this.inOrder(root.right, arr)
+            this.inOrder(root.right)
         }
     }
 
@@ -165,11 +165,11 @@ class Bst {
         }
         return root
     }
-    isBst(){
+    isBst() {
         let arr = []
         this.inOrder(this.root, arr)
-        for(let i=0; i<arr.length;i++){
-            if(arr[i]<arr[i-1]){
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] < arr[i - 1]) {
                 return false
             }
         }
@@ -180,21 +180,21 @@ class Bst {
 
 
 const bst = new Bst()
-    bst.insertion(9)
-    bst.insertion(4)
-    bst.insertion(3)
-    bst.insertion(6)
-    bst.insertion(5)
-    bst.insertion(7)
-    bst.insertion(17)
-    bst.insertion(22)
-    bst.insertion(20)
-    bst.insertion(10)
-// console.log(bst.search(bst.root, 10));
+bst.insertion(9)
+bst.insertion(4)
+bst.insertion(3)
+bst.insertion(6)
+bst.insertion(5)
+bst.insertion(7)
+bst.insertion(17)
+bst.insertion(22)
+bst.insertion(20)
+bst.insertion(10)
+console.log(bst.search(bst.root, 10));
 bst.preOrder(bst.root)
-// bst.inOrder(bst.root)
-// bst.postOrder(bst.root)
-// bst.delete(3)
+bst.inOrder(bst.root)
+bst.postOrder(bst.root)
+bst.delete(3)
 bst.levelOrder()
 console.log(bst.min(bst.root));
 console.log(bst.max(bst.root));

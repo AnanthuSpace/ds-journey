@@ -45,20 +45,6 @@ class Graph{
         this.adjacencyList[vertex2].add(vertex1)
     }
 
-    // dfs(start){
-    //     const visted = new Set()
-    //     this.dfsTraversal(start, visted)
-    // }
-
-    // dfsTraversal(vertex, visited){
-    //     visited.add(vertex)
-    //     console.log(vertex);
-    //     for(const adj of this.adjacencyList[vertex]){
-    //         if(!visited.has(adj)){
-    //             this.dfsTraversal(adj, visited)
-    //         }
-    //     }
-    // }
 
     dfs(startingNode) {
         const visited = {};
@@ -70,7 +56,7 @@ class Graph{
             const currentVertex = stack.pop();
             console.log(currentVertex);
             
-            this.adjList[currentVertex].forEach(neighbor => {
+            this.adjacencyList[currentVertex].forEach(neighbor => {
                 if (!visited[neighbor]) {
                     visited[neighbor] = true;
                     stack.push(neighbor);
@@ -107,7 +93,7 @@ class Graph{
         delete this.adjacencyList[vertex]
     }
 
-    cyclic(){
+    isLoop(){
         for(let v in this.adjacencyList){
             if (this.adjacencyList[v].has(v)) {
                 return true
@@ -127,7 +113,7 @@ class Graph{
             const curr = queue.shift()
             console.log(curr);
 
-            for(const adj of this.adjList[curr]){
+            for(const adj of this.adjacencyList[curr]){
                 if(!visited[adj]){
                     visited[adj] = true
                     queue.push(adj)
@@ -145,6 +131,6 @@ graph.AddEdge("A","B")
 graph.AddEdge("B","C")
 graph.removeVertex("B")
 graph.AddEdge("A","A")
-console.log("Cyclic finding is : ",graph.cyclic());
+console.log("isLoop finding is : ",graph.isLoop());
 graph.display() 
 console.log(graph.hasEdge("A","C"));

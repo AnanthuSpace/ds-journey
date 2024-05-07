@@ -5,7 +5,7 @@ class Trie{
 
     insert(word){
         let node = this.root
-        for(let char of word){
+        for(let char of word){  
             let index = char.charCodeAt(0)-'a'.charCodeAt(0)
             console.log("Index", index);
             if(!node[index]){
